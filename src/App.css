@@ -1,0 +1,44 @@
+
+.myNavLink {
+  text-decoration: none;
+  color:rgb(222, 220, 220)
+}
+
+.myNavLink:hover{
+  color:white
+}
+
+.myLink {
+  text-decoration: none;
+  font-weight: 700;
+  color:rgb(97, 64, 64)
+}
+
+.filter{
+  position:fixed;
+  left: 2%;
+  width: 300px;
+  height: 700px;
+  border:4px;
+}
+
+.GuitarCardImg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: auto;
+    max-height: 250px;
+    width: auto;
+    max-width: 250px; 
+}
+.GuitarCard{
+  height: 400px;
+  width: 250px;
+}
+.GuitarCard-bg{
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
