@@ -30,11 +30,9 @@ function Gallery(prop) {
       <Row className="justify-content-center pt-2">
 
         <Col className="filter">
-          <h5>Filter</h5>
-          <Filter handleChange = {HandleFilterChange}/>
-          <p>{filterSelection}</p>
+        <h5>Filter</h5>
+        <Filter handleChange = {HandleFilterChange}/>
         
-          
         </Col>
 
 

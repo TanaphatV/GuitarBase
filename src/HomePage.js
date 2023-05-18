@@ -67,41 +67,7 @@ function HomePage(prop) {
           </Carousel>
         </Col>
       </Row>
-      <Row className="justify-content-center pt-2">
-        <Col className="text-center" xs={12} md={4}>
-          <Card className="my-2">
-            <Card.Header as="h5"> {!top3[0]?"":top3[0].code} </Card.Header>
-            <Card.Body>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="text-center" xs={12} md={4}>
-          <Card className="my-2">
-            <Card.Header as="h5"> {!top3[1]?"":top3[1].code}</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col className="text-center" xs={12} md={4}>
-          <Card className="my-2">
-            <Card.Header as="h5"> {}</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row className="pt-4 me-5">
-        <Col className="text-end"><Link className="myLink" to="/"> See More Courses </Link></Col>
-      </Row>
+   
     </Container>
   );
 }

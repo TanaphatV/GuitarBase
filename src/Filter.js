@@ -14,14 +14,32 @@ export default function Filter({handleChange}) {
     handleChange(value);
   };
 
-  const [option, setOption] = useState([]);
+  const [brandOption, setBrandOption] = useState([]);
+  const [bodyOption, setBodyOption] = useState([]);
+  const [pickOption, setPickOption] = useState([]);
 
   useEffect(() => {
     fetch('https://dt468-guitarbase-webservice.onrender.com/Brand')
       .then(response => { return response.json() })
       .then(data => {
         console.log(data);
-        setOption([...data]);
+        setBrandOption([...data]);
+      });
+  }, []);
+  useEffect(() => {
+    fetch('https://dt468-guitarbase-webservice.onrender.com/BodyShape')
+      .then(response => { return response.json() })
+      .then(data => {
+        console.log(data);
+        setBodyOption([...data]);
+      });
+  }, []);
+  useEffect(() => {
+    fetch('https://dt468-guitarbase-webservice.onrender.com/PickUp')
+      .then(response => { return response.json() })
+      .then(data => {
+        console.log(data);
+        setPickOption([...data]);
       });
   }, []);
   //-------------------------TODO: Add none value as element 0 of the column
@@ -31,16 +49,20 @@ export default function Filter({handleChange}) {
       <p>Brand</p>
       <ParentComponent
         pid="Brand"
-        options={option}
+        options={brandOption}
         onChange={handleSelectorChange}
       />
       <ParentComponent
-        pid="parentComponent2"
-        options={option}
+        pid="BodyShape"
+        options={bodyOption}
         onChange={handleSelectorChange}
       />
-      <p>Selected value from Brand: {selectedValues["Brand"]}</p>
-      <p>Selected value from ParentComponent2: {selectedValues["parentComponent2"]}</p>
+      <ParentComponent
+        pid="PickUp"
+        options={pickOption}
+        onChange={handleSelectorChange}
+      />
+      <p>Selected values : {selectedValues["Brand"]} {selectedValues["BodyShape"]} {selectedValues["PickUp"]}</p>
     </div>
   );
 }

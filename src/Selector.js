@@ -18,4 +18,3 @@ export default function Selector({ value, options, onChange, id }) {
     </div>
   );
 }
-
