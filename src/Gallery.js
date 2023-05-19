@@ -32,7 +32,7 @@ function Gallery(prop) {
         <Col className="filter">
         <h5>Filter</h5>
         <Filter handleChange = {HandleFilterChange}/>
-        
+        <p>result {filterSelection.brand}</p>
         </Col>
 
 

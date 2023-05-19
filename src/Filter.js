@@ -11,7 +11,13 @@ export default function Filter({handleChange}) {
       ...prevSelectedValues,
       [parentComponentId]: value,
     }));
-    handleChange(value);
+
+    handleChange({
+      brand:selectedValues["Brand"],
+      body:selectedValues["BodyShape"],
+      pickup:selectedValues["PickUp"]
+    });
+
   };
 
   const [brandOption, setBrandOption] = useState([]);
@@ -42,26 +48,32 @@ export default function Filter({handleChange}) {
         setPickOption([...data]);
       });
   }, []);
-  //-------------------------TODO: Add none value as element 0 of the column
-
+  //-------------------------TODO: Add none value as element 0 of the column 
   return (
     <div>
-      <p>Brand</p>
-      <ParentComponent
+      <p>
+        Brand
+        <ParentComponent
         pid="Brand"
         options={brandOption}
         onChange={handleSelectorChange}
-      />
-      <ParentComponent
+        />
+
+        Body Shape
+        <ParentComponent
         pid="BodyShape"
         options={bodyOption}
         onChange={handleSelectorChange}
-      />
-      <ParentComponent
+        />
+
+        Pickup Configuration
+        <ParentComponent
         pid="PickUp"
         options={pickOption}
         onChange={handleSelectorChange}
-      />
+        />
+      </p>
+      
       <p>Selected values : {selectedValues["Brand"]} {selectedValues["BodyShape"]} {selectedValues["PickUp"]}</p>
     </div>
   );

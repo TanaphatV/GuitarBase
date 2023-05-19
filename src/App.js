@@ -7,6 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 
 import HomePage from './HomePage';
 import Gallery from './Gallery';
+import Upload from './Upload';
 
 import icon from './image/guitar.png';
 
@@ -34,8 +35,13 @@ function App(){
           <Nav className="me-auto">
           </Nav>
           <Nav activeKey={content}>
-            <Nav.Link as={Link} eventKey={0} to="/courses"onClick={()=>handleClick(0)}>
+            <Nav.Link as={Link} eventKey={0} to="/gallery"onClick={()=>handleClick(0)}>
               Gallery
+            </Nav.Link>
+            </Nav>
+            <Nav activeKey={content}>
+            <Nav.Link as={Link} eventKey={0} to="/upload"onClick={()=>handleClick(0)}>
+              Upload
             </Nav.Link>
             </Nav>
         </Navbar.Collapse>
@@ -44,7 +50,8 @@ function App(){
     
     <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/courses" element={<Gallery />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/upload" element={<Upload />} />
        
     </Routes>
 
