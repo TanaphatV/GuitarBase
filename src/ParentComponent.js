@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Selector from "./Selector";
 
-export default function ParentComponent({ pid,options, onChange }) {
-  const [selectedValue, setSelectedValue] = useState({});
+export default function ParentComponent({ pid, options, onChange }) {
+  const [selectedValue, setSelectedValue] = useState("");
+
   const handleChange = (id, value) => {
     setSelectedValue(value);
-    onChange(pid,value);
+    onChange(pid, value);
   };
 
   return (

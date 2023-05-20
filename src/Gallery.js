@@ -1,19 +1,26 @@
-
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
+import GuitarCard from './GuitarCard';
+import globalVars from './globalVar';
 import './App.css';
 import Filter from './Filter';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 function Gallery(prop) {
-
+  const [GuitarList,setGuitarList] = useState([]);
   const [filterSelection,setFilter] = useState({});
   const HandleFilterChange = (value) => {
     setFilter(value);
   }
   
+  useEffect(() => {
+    fetch(globalVars.hostUrl + '/Guitars')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setGuitarList([...data]);
+      });
+  }, []);
 
 
   return (
@@ -35,19 +42,19 @@ function Gallery(prop) {
         <p>result {filterSelection.brand}</p>
         </Col>
 
-
         <Col className="text-center" xs={12} md={4}>
-          <Card className="GuitarCard" style={{ border: "none" }}>
-            <div className='GuitarCard-bg'>
-              <Card.Img className="GuitarCardImg" variant="middle" src={require('./image/IMG_2162.jpg')} />
-            </div>
-            <Card.Header as="h5">SSR630</Card.Header>
-            <Card.Body>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional content.
-              </Card.Text>
-            </Card.Body>
-          </Card>
+        {GuitarList.map((item,index) => {
+          console.log(item.Image)
+          return(<GuitarCard 
+            id={'g'+index} 
+            key={'g'+index}
+            name={item.Name}
+            brand={item.Brand}
+            body={item.BodyShape}
+            pickup={item.Pickup}
+            imageUrl={item.ImageUrl}
+            />)
+        })}
         </Col>
       </Row>
     </Container>

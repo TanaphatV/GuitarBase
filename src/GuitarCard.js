@@ -1,32 +1,26 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Card from 'react-bootstrap/Card';
-import './App.css';
 
-function GuitarCard({ id, name, imgByte }) {
-  const displayImage = () => {
-    const blob = new Blob([imgByte], { type: 'image/jpeg' });
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const dataURL = e.target.result;
-      const imgElement = document.getElementById(id);
-      imgElement.src = dataURL;
-    };
-    reader.readAsDataURL(blob);
-  };
+function GuitarCard({ id, name, brand, body, pickup, imageUrl }) {
+  const imgRef = useRef(null);
 
-  React.useEffect(() => {
-    displayImage();
-  }, [imgByte, id]);
+  useEffect(() => {
+    if (imageUrl) {
+      const imgElement = imgRef.current;
+      imgElement.src = imageUrl;
+    }
+  }, [imageUrl]);
 
   return (
     <Card className="GuitarCard" style={{ border: "none" }}>
       <div className='GuitarCard-bg'>
-        <Card.Img id={id} className="GuitarCardImg" variant="middle" alt="Guitar" />
+        <Card.Img ref={imgRef} id={id} className="GuitarCardImg" variant="middle" alt="Guitar" />
       </div>
       <Card.Header as="h5">{name}</Card.Header>
       <Card.Body>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          <p>{brand} {body}</p>
+          <p>{pickup}</p>
         </Card.Text>
       </Card.Body>
     </Card>
