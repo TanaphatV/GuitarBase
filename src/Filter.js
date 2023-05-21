@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import ParentComponent from "./ParentComponent";
 import globalVars from './globalVar';
 
-export default function Filter({ handleChange }) {
-  const [selectedValues, setSelectedValues] = useState([]);
+export default function Filter({ handleChange}) {
+  const [selectedValues, setSelectedValues] = useState(["none","none","none"]);
 
   const handleSelectorChange = (parentComponentId, value) => {
     setSelectedValues((prevSelectedValues) => ({
       ...prevSelectedValues,
-      [parentComponentId]: value,
+      [parentComponentId]: value === undefined ? "none" : value,
     }));
   };
-
   const [brandOption, setBrandOption] = useState([]);
   const [bodyOption, setBodyOption] = useState([]);
   const [pickOption, setPickOption] = useState([]);
@@ -22,7 +21,7 @@ export default function Filter({ handleChange }) {
       body: selectedValues["BodyShape"],
       pickup: selectedValues["PickUp"]
     });
-  }, [selectedValues]); // Add selectedValues as a dependency
+  }, [selectedValues]);
 
   useEffect(() => {
     fetch(globalVars.hostUrl + '/Brand')

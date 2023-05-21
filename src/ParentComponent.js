@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Selector from "./Selector";
 
 export default function ParentComponent({ pid, options, onChange }) {
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState("none");
 
   const handleChange = (id, value) => {
     setSelectedValue(value);

@@ -8,20 +8,35 @@ import Filter from './Filter';
 import { useState,useEffect } from 'react';
 function Gallery(prop) {
   const [GuitarList,setGuitarList] = useState([]);
-  const [filterSelection,setFilter] = useState({});
+  const [filterSelection,setFilter] = useState({
+    brand:"none",
+    body:"none",
+    pickup:"none"
+
+  });
   const HandleFilterChange = (value) => {
     setFilter(value);
   }
-  
-  useEffect(() => {
-    fetch(globalVars.hostUrl + '/Guitars')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setGuitarList([...data]);
-      });
-  }, []);
 
+  function applyFilter(){
+    const params = new URLSearchParams();
+    
+    params.append('brand', filterSelection.brand);
+    params.append('body', filterSelection.body);
+    params.append('pickup', filterSelection.pickup);
+    const url = globalVars.hostUrl + `/Guitars?${params.toString()}`;
+    console.log(url);
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setGuitarList([...data]);
+    });
+  }
+
+  useEffect(() => {
+    applyFilter();
+  }, []);
 
   return (
     <Container className="w-100 mw-100">
@@ -39,6 +54,7 @@ function Gallery(prop) {
         <Col className="filter">
         <h5>Filter</h5>
         <Filter handleChange = {HandleFilterChange}/>
+        <button type="button" onClick={applyFilter}>Apply</button>
         <p>result {filterSelection.brand}</p>
         </Col>
 
