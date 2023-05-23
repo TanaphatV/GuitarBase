@@ -72,11 +72,10 @@ function Gallery({Admin=false}) {
 
         <Row className="justify-content-center pt-2">
 
-          <Col className="filter" xs={2} md={2} style={{ border: "1px solid #ccc", boxSizing: "border-box", height: "300px"  }}>
+          <Col className="filter" xs={2} md={2} style={{ border: "1px solid #ccc", boxSizing: "border-box", height: "250px"  }}>
             <h5>Filter</h5>
             <Filter handleChange={HandleFilterChange} />
             <button type="button" onClick={applyFilter}>Apply</button>
-            <p>result {filterSelection.brand}</p>
           </Col>
 
           <Col className="text-center" xs={6} md={6}>

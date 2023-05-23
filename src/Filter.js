@@ -75,7 +75,7 @@ export default function Filter({ handleChange}) {
         />
       </p>
 
-      <p>Selected values : {selectedValues["Brand"]} {selectedValues["BodyShape"]} {selectedValues["PickUp"]}</p>
+      
     </div>
   );
 }
