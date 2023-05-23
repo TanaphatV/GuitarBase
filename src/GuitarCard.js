@@ -1,25 +1,48 @@
 import React, { useEffect, useRef } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import globalVars from './globalVar';
 
 function GuitarCard({ id, name, brand, body, pickup, imageUrl, isAdmin = false, handleEdit, handleEditClose }) {
   const imgRef = useRef(null);
 
-  //const [imageUrl, setImageUrl] = useState(initialData.imageUrl || '');
-  //const [filterSelection, setFilter] = useState(initialData.filterSelection || {});
-  //const [name, setName] = useState(initialData.name || '');
+  const DeleteGuitar = async () => {
 
-  function openEditor(){
+      const body = {
+        id:id,
+      };
+
+      const response = await fetch(globalVars.hostUrl + '/deleteGuitar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      window.location.reload();
+  };
+
+  function handleDelete() {
+    // Display confirmation prompt before deleting the guitar
+    const confirmDelete = window.confirm('Are you sure you want to delete this guitar?');
+
+    if (confirmDelete) {
+      DeleteGuitar()
+      
+    }
+  }
+
+  function openEditor() {
     handleEdit(
       {
-        id:id,
-        imageUrl:imageUrl,
-        filterSelection:{
-          brand:brand,
-          body:body,
-          pickup:pickup
+        id: id,
+        imageUrl: imageUrl,
+        filterSelection: {
+          brand: brand,
+          body: body,
+          pickup: pickup
         },
-        name:name
+        name: name
       }
     )
   }
@@ -60,6 +83,22 @@ function GuitarCard({ id, name, brand, body, pickup, imageUrl, isAdmin = false, 
           Edit
         </Button>
       )}
+
+      {isAdmin && (<Button
+        variant="danger"
+        size="sm"
+        className="delete-button"
+        onClick={handleDelete}
+        style={{
+          position: "absolute",
+          bottom: "1%",
+          left: "1%",
+          width: "auto",
+          padding: "5px 10px",
+        }}
+      >
+        Delete
+      </Button>)}
     </Card>
   );
 }
