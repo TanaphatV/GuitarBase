@@ -20,8 +20,6 @@ function Gallery({Admin=false}) {
     setShowOverlay(true);
   };
 
-
-
   const handleCloseOverlay = () => {
     setShowOverlay(false);
   };

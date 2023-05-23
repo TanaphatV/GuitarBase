@@ -63,7 +63,8 @@ function Edit({ initialData}) {
   const handlePopupClose = () => {
     setSuccessPopup(false);
     setErrorPopup(false);
-    window.location.reload();
+    window.location.href = window.location.href;
+    //window.location.reload();
   };
 
   return (
