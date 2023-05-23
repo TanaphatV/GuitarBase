@@ -53,7 +53,7 @@ function App() {
             <Nav className="me-auto">
             </Nav>
             <Nav activeKey={content}>
-              <Nav.Link as={Link} eventKey={0} to="/gallery" onClick={() => handleClick(0)}>
+              <Nav.Link as={Link} eventKey={0} to="/" onClick={() => handleClick(0)}>
                 Gallery
               </Nav.Link>
             </Nav>
@@ -71,7 +71,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Gallery Admin={isAdmin} />} />
-        <Route path="/gallery" element={<Gallery Admin={isAdmin} />} />
+        <Route path="/" element={<Gallery Admin={isAdmin} />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/login" element={<Login />} />
 

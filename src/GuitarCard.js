@@ -19,8 +19,8 @@ function GuitarCard({ id, name, brand, body, pickup, imageUrl, isAdmin = false, 
         },
         body: JSON.stringify(body)
       });
-      window.location.href = window.location.href;
       //window.location.reload();
+      window.location.href = window.location.href;
   };
 
   function handleDelete() {
