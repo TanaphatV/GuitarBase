@@ -3,12 +3,14 @@ import GuitarCard from './GuitarCard';
 import Filter from './Filter';
 import globalVars from './globalVar';
 
-function Upload() {
-  const [imageUrl, setImageUrl] = useState('');
-  const [filterSelection, setFilter] = useState({});
-  const [name, setName] = useState('');
+function Edit({ initialData}) {
+  const [imageUrl, setImageUrl] = useState(initialData.imageUrl || '');
+  const [filterSelection, setFilter] = useState(initialData.filterSelection || {});
+  const [name, setName] = useState(initialData.name || '');
+  const [id, setid] = useState(initialData.id || '');
   const [successPopup, setSuccessPopup] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
+
 
   const HandleFilterChange = (value) => {
     setFilter(value);
@@ -29,6 +31,7 @@ function Upload() {
   const UploadGuitar = async () => {
     try {
       const body = {
+        id:id,
         name: name,
         brand: filterSelection.brand,
         body: filterSelection.body,
@@ -36,7 +39,7 @@ function Upload() {
         imageUrl: imageUrl
       };
 
-      const response = await fetch(globalVars.hostUrl + '/uploadGuitar', {
+      const response = await fetch(globalVars.hostUrl + '/editGuitar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -72,7 +75,7 @@ function Upload() {
           <p>Guitar Name:</p>
           <input type="text" id="textIn" value={name} onChange={(e) => setName(e.target.value)} required/>
           <Filter handleChange={HandleFilterChange} />
-          <button type="button" onClick={UploadGuitar}>Upload</button>
+          <button type="button" onClick={UploadGuitar}>Apply Changes</button>
         </form>
 
         {successPopup && (
@@ -92,7 +95,9 @@ function Upload() {
             </div>
           </div>
         )}
-        <div>
+      </div>
+
+      <div>
         <GuitarCard
           id='imagePreview'
           name={name}
@@ -102,11 +107,9 @@ function Upload() {
           imageUrl={imageUrl}
         />
       </div>
-      </div>
-
-      
     </div>
   );
 }
 
-export default Upload;
+export default Edit;
+

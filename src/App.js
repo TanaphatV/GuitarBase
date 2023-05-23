@@ -13,6 +13,7 @@ import icon from './image/guitar.png';
 
 function App(){
   const [content, setContent] = useState(-1);
+  const [isAdmin,setAdmin] = useState(true);
   function handleClick(contentId){
     setContent(contentId);
   }
@@ -50,7 +51,7 @@ function App(){
     
     <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/gallery" element={<Gallery Admin={isAdmin}/>} />
         <Route path="/upload" element={<Upload />} />
        
     </Routes>
