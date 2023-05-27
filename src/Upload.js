@@ -10,7 +10,7 @@ function Upload() {
   const [successPopup, setSuccessPopup] = useState(false);
   const [errorPopup, setErrorPopup] = useState(false);
 
-  const HandleFilterChange = (value) => {
+  const handleFilterChange = (value) => {
     setFilter(value);
   };
 
@@ -26,7 +26,7 @@ function Upload() {
     }
   };
 
-  const UploadGuitar = async () => {
+  const uploadGuitar = async () => {
     try {
       const body = {
         name: name,
@@ -63,50 +63,54 @@ function Upload() {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-      <div>
-        <h1>HERE YOU CAN UPLOAD YOUR GUITAR</h1>
-        <form>
-          <input type="file" id="imageInput" accept="image/jpeg, image/png" onChange={updateImage} required />
-          <label htmlFor="imageInput"></label>
-          <p>Guitar Name:</p>
-          <input type="text" id="textIn" value={name} onChange={(e) => setName(e.target.value)} required/>
-          <Filter handleChange={HandleFilterChange} />
-          <button type="button" onClick={UploadGuitar}>Upload</button>
-        </form>
-
-        {successPopup && (
-          <div className="overlay">
-            <div className="popup success-popup">
-              <p>Upload successful!</p>
-              <button onClick={handlePopupClose}>Close</button>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Upload Your Guitar</h1>
+  
+      <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+        <div >
+          <form style={{ marginBottom: '20px' }}>
+            <label htmlFor="imageInput">Select an Image:</label>
+            <input type="file" id="imageInput" accept="image/jpeg, image/png" onChange={updateImage} required />
+            <p></p>
+            <label htmlFor="textIn">Guitar Name:</label>
+            <input type="text" id="textIn" value={name} onChange={(e) => setName(e.target.value)} required />
+            <Filter handleChange={handleFilterChange} />
+            <button type="button" onClick={uploadGuitar}>Upload</button>
+          </form>
+  
+          {successPopup && (
+            <div className="overlay">
+              <div className="popup success-popup">
+                <p>Upload successful!</p>
+                <button onClick={handlePopupClose}>Close</button>
+              </div>
             </div>
-          </div>
-        )}
-
-        {errorPopup && (
-          <div className="overlay">
-            <div className="popup error-popup">
-              <p>Error uploading guitar.</p>
-              <button onClick={handlePopupClose}>Close</button>
+          )}
+  
+          {errorPopup && (
+            <div className="overlay">
+              <div className="popup error-popup">
+                <p>Error uploading guitar.</p>
+                <button onClick={handlePopupClose}>Close</button>
+              </div>
             </div>
-          </div>
-        )}
-        <div>
-        <GuitarCard
-          id='imagePreview'
-          name={name}
-          body={filterSelection.body}
-          brand={filterSelection.brand}
-          pickup={filterSelection.pickup}
-          imageUrl={imageUrl}
-        />
+          )}
+        </div>
+  
+        <div >
+          <GuitarCard
+            id='imagePreview'
+            name={name}
+            body={filterSelection.body}
+            brand={filterSelection.brand}
+            pickup={filterSelection.pickup}
+            imageUrl={imageUrl}
+          />
+        </div>
       </div>
-      </div>
-
-      
     </div>
   );
+  
 }
 
 export default Upload;
