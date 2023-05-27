@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import globalVars from './globalVar';
-function Login() {
+function Login(prop) {
     const [successPopup, setSuccessPopup] = useState(false);
     const [errorPopup, setErrorPopup] = useState(false);
     const [username, setUsername] = useState('');
@@ -41,6 +41,7 @@ function Login() {
                 throw new Error('Invalid Credential');
             }
             sessionStorage.setItem('myBoolean', 'true');
+            prop.setAdmin(true);
             setSuccessPopup(true);
         } catch (error) {
 

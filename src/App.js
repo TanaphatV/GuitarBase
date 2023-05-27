@@ -15,7 +15,7 @@ import icon from './image/guitar.png';
 
 function App() {
   const [content, setContent] = useState(-1);
-  const [isAdmin, setAdmin] = useState(true);//sessionStorage.getItem('myBoolean')
+  const [isAdmin, setAdmin] = useState(false);//sessionStorage.getItem('myBoolean')
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -73,7 +73,7 @@ function App() {
         <Route path="/" element={<Gallery Admin={isAdmin} />} />
         <Route path="/" element={<Gallery Admin={isAdmin} />} />
         <Route path="/upload" element={<Upload />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setAdmin={setAdmin}/>} />
 
       </Routes>
 
