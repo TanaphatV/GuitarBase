@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import GuitarCard from './GuitarCard';
 import Filter from './Filter';
 import globalVars from './globalVar';
-
-function Edit({ initialData}) {
+const exitButtonStyle = {
+  position: 'absolute',
+  top: '-20px',
+  position:'relative',
+  left: '350px',
+  fontSize: '20px',
+  color: 'black',
+  cursor: 'pointer',
+};
+function Edit({ initialData, handleCloseOverlay}) {
   const [imageUrl, setImageUrl] = useState(initialData.imageUrl || '');
   const [filterSelection, setFilter] = useState(initialData.filterSelection || {});
   const [name, setName] = useState(initialData.name || '');
@@ -69,6 +77,7 @@ function Edit({ initialData}) {
 
     return (
       <div style={{ backgroundColor: '#ffffff', padding: '30px', paddingRight: '50px', paddingLeft: '50px', display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0px 0px 10px 2px rgba(0, 0, 0, 0.1)' }}>
+      <span style={exitButtonStyle} onClick={handleCloseOverlay}>X</span>
       <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>Edit Your Guitar</h1>
   
       <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>

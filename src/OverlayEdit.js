@@ -15,19 +15,10 @@ const OverlayEdit = ({onCloseOverlay,initialData}) => {
     alignItems: 'center',
   };
 
-  const exitButtonStyle = {
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
-    fontSize: '20px',
-    color: 'white',
-    cursor: 'pointer',
-  };
-
   return (
     <div style={overlayStyle}>
-      <span style={exitButtonStyle} onClick={onCloseOverlay}>X</span>
-      {<Edit initialData={initialData}/>}
+
+      {<Edit initialData={initialData} handleCloseOverlay={onCloseOverlay}/>}
     </div>
   );
 };
