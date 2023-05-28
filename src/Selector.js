@@ -8,7 +8,7 @@ export default function Selector({ value, options, onChange, id }) {
 
   return (
     <div>
-      <select value={value} onChange={handleChange}>
+      <select value={value} onChange={handleChange} style={{width:"200px"}}>
         <option value="none">None</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
