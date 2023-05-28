@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import globalVars from './globalVar';
+import './App.css';
+const loginStyle = {
+    position: 'fixed',
+    left:'50%'
+  };
+
 function Login(prop) {
     const [successPopup, setSuccessPopup] = useState(false);
     const [errorPopup, setErrorPopup] = useState(false);
@@ -65,9 +71,9 @@ function Login(prop) {
     });
 
     return (
-        <div>
-
-            <h4>Insert your admin credintials here</h4>
+        <div className="login-container">
+        <div className="login-form">
+            <h4>Admin Login</h4>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -107,6 +113,7 @@ function Login(prop) {
                     </div>
                 </div>
             )}
+            </div>
         </div>
     );
 }
